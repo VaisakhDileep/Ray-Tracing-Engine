@@ -21,32 +21,32 @@ public:
 
 	vector_3d(vector_3d &&source); // Move constructor
 
-	inline double x() const; // returns the x-coordinate
-	inline double y() const; // returns the y-coordinate
-	inline double z() const; // returns the z-coordinate
+	double x() const; // returns the x-coordinate
+	double y() const; // returns the y-coordinate
+	double z() const; // returns the z-coordinate
 
-	inline double r() const; // return red value
-	inline double g() const; // return green value
-	inline double b() const; // return blue value
+	double r() const; // returns red value
+	double g() const; // returns green value
+	double b() const; // returns blue value
 
-	inline const vector_3d& operator+() const; // Unary + operator
-	inline vector_3d operator-() const; // Unary - operator
+	const vector_3d& operator+() const; // Unary + operator
+	vector_3d operator-() const; // Unary - operator
 
-	inline double operator[](int i) const; // Subscript operator
-	inline double& operator[](int i); // Subscript operator that returns by reference, fails for constant objects.
+	double operator[](int i) const; // Subscript operator
+	double& operator[](int i); // Subscript operator that returns by reference, fails for constant objects.
 
 	friend std::ostream& operator<<(std::ostream &os, const vector_3d &rhs); // Stream insertion operator
 
 	friend std::istream& operator>>(std::istream &is, vector_3d &rhs); // Stream extraction operator
 
-	inline vector_3d& operator+=(const vector_3d &rhs);
-	inline vector_3d& operator-=(const vector_3d &rhs);
+	vector_3d& operator+=(const vector_3d &rhs);
+	vector_3d& operator-=(const vector_3d &rhs);
 
-	inline vector_3d& operator*=(const vector_3d &rhs);
-	inline vector_3d& operator/=(const vector_3d &rhs);
+	vector_3d& operator*=(const vector_3d &rhs);
+	vector_3d& operator/=(const vector_3d &rhs);
 
-	inline vector_3d& operator*=(const double rhs); // Scalar operation
-	inline vector_3d& operator/=(const double rhs); // Scalar operation
+	vector_3d& operator*=(const double rhs); // Scalar operation
+	vector_3d& operator/=(const double rhs); // Scalar operation
 
 	friend vector_3d operator+(const vector_3d &lhs, const vector_3d &rhs); // Binary + operator(l-value + l-value)
 	friend vector_3d operator-(const vector_3d &lhs, const vector_3d &rhs); // Binary - operator(l-value + l-value)
@@ -60,17 +60,16 @@ public:
 	friend vector_3d operator*(double lhs, const vector_3d &rhs); // Binary * operator(double + l-value)
 	friend vector_3d operator/(double lhs, const vector_3d &rhs); // Binary / operator(double + l-value)
 
-	inline double dot(const vector_3d &rhs);
+	double dot(const vector_3d &rhs); // Dot product
 
-	inline double cross(const vector_3d &rhs);
+	double cross(const vector_3d &rhs); // Cross product
 
-	inline double length() const;
+	double length() const;
 
-	inline double squared_length() const;
+	double squared_length() const;
 
-	inline void make_unit_vector();
+	void make_unit_vector();
 
-	inline vector_3d unit_vector(vector_3d vec);
+	vector_3d unit_vector(vector_3d vec);
 };
-
 #endif
