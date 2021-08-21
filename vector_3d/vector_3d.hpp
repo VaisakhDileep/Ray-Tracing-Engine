@@ -58,18 +58,17 @@ public:
 	friend vector_3d operator/(const vector_3d &lhs, double rhs); // Binary / operator(l-value + double)
 
 	friend vector_3d operator*(double lhs, const vector_3d &rhs); // Binary * operator(double + l-value)
-	friend vector_3d operator/(double lhs, const vector_3d &rhs); // Binary / operator(double + l-value)
 
-	double dot(const vector_3d &rhs); // Dot product
+	friend double dot(const vector_3d &lhs, const vector_3d &rhs); // Dot product
 
-	double cross(const vector_3d &rhs); // Cross product
+	friend vector_3d cross(const vector_3d &lhs, const vector_3d &rhs); // Cross product
 
 	double length() const;
 
 	double squared_length() const;
 
-	void make_unit_vector();
+	void make_unit_vector(); // Makes the vector a unit vector.
 
-	vector_3d unit_vector(vector_3d vec);
+	vector_3d unit_vector() const; // Returns a unit vector.
 };
 #endif
