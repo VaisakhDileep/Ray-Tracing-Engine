@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date		: 18, August, 2021
-Description : Class definition for the vector class(3 dimensional).
+Description : Class implementation for the vector class(3 dimensional).
 */
 
 #include "vector_3d.hpp"
@@ -35,6 +35,36 @@ vector_3d::vector_3d(vector_3d &&source) // Move constructor
 	d[0] = source.d[0];
 	d[1] = source.d[1];
 	d[2] = source.d[2];
+}
+
+vector_3d& vector_3d::operator=(const vector_3d &rhs) // Copy constructor
+{
+	if(this == &rhs)
+	{
+		return *this; // This is useful when chaining assignment operator.
+	}
+
+	for(int i {0}; i < 3; i++)
+	{
+		d[i] = rhs.d[i];
+	}
+
+	return *this; // This is useful when chaining assignment operator.
+}
+
+vector_3d& vector_3d::operator=(vector_3d &&rhs) // Move constructor
+{
+	if(this == &rhs)
+	{
+		return *this; // This is useful when chaining assignment operator.
+	}
+
+	for(int i {0}; i < 3; i++)
+	{
+		d[i] = rhs.d[i];
+	}
+
+	return *this; // This is useful when chaining assignment operator.
 }
 
 double vector_3d::x() const // returns the x-coordinate

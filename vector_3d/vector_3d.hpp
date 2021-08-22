@@ -4,8 +4,8 @@ Date		: 18, August, 2021
 Description : Class defintion for the vector class(3 dimensional).
 */
 
-#ifndef _VECTOR_3_D_
-#define _VECTOR_3_D_
+#ifndef _VECTOR_3_D_HPP_
+#define _VECTOR_3_D_HPP_
 
 #include<iostream>
 
@@ -18,8 +18,10 @@ public:
 	vector_3d(double d1, double d2, double d3); // Overloaded constructor
 
 	vector_3d(const vector_3d &source); // Copy constructor
-
 	vector_3d(vector_3d &&source); // Move constructor
+
+	vector_3d& operator=(const vector_3d &rhs); // Copy assignment
+	vector_3d& operator=(vector_3d &&rhs); // Move assignment
 
 	double x() const; // returns the x-coordinate
 	double y() const; // returns the y-coordinate
@@ -67,8 +69,8 @@ public:
 
 	double squared_length() const;
 
-	void make_unit_vector(); // Makes the vector a unit vector.
+	void make_unit_vector(); // Makes the vector a unit vector
 
-	vector_3d unit_vector() const; // Returns a unit vector.
+	vector_3d unit_vector() const; // Returns a unit vector
 };
 #endif
