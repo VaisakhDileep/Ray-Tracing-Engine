@@ -4,8 +4,6 @@ Date		: 6, September, 2021
 Description : Constructing a simple sphere.
 */
 
-#include "../vector_3d/vector_3d.hpp"
-
 #include "../ray/ray.hpp"
 
 #include<fstream>

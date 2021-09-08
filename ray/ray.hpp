@@ -24,5 +24,4 @@ public:
 
 	vector_3d point_at_parameter(double time) const; // Returns the current position of the ray.
 };
-
 #endif
