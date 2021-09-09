@@ -230,7 +230,7 @@ vector_3d operator*(double lhs, const vector_3d &rhs) // Binary * operator(doubl
 
 double dot(const vector_3d &lhs, const vector_3d &rhs) // Dot product
 {
-	return lhs.d[0] * rhs.d[0] + lhs.d[1] * rhs.d[1] + lhs.d[2] * lhs.d[2];
+	return lhs.d[0] * rhs.d[0] + lhs.d[1] * rhs.d[1] + lhs.d[2] * rhs.d[2];
 }
 
 vector_3d cross(const vector_3d &lhs, const vector_3d &rhs) // Cross product

@@ -73,4 +73,9 @@ public:
 
 	vector_3d unit_vector() const; // Returns a unit vector
 };
+
+using point_3d = vector_3d; // 3D point
+
+using colour_3d = vector_3d; // RGB values
+
 #endif
