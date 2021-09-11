@@ -34,7 +34,7 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
 
 	if(discriminant > 0)
 	{
-		int solution = (-b - sqrt(discriminant)) / (2 * a);
+		double solution = (-b - sqrt(discriminant)) / (2 * a);
 
 		if((solution > t_min) and (solution < t_max))
 		{
@@ -42,9 +42,7 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
 
 			record.p = r.point_at_parameter(solution);
 
-			record.normal = r.point_at_parameter(solution) - center;
-
-			record.normal.make_unit_vector();
+			record.normal = (r.point_at_parameter(solution) - center).make_unit_vector();
 
 			return true;
 		}
@@ -53,7 +51,13 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
 
 		if((solution > t_min) and (solution < t_max))
 		{
+			record.t = solution;
 
+			record.p = r.point_at_parameter(solution);
+
+			record.normal = (r.point_at_parameter(solution) - center).make_unit_vector();
+
+			return true;
 		}
 	}
 

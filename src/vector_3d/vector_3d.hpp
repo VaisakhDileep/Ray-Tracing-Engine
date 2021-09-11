@@ -69,7 +69,7 @@ public:
 
 	double squared_length() const;
 
-	void make_unit_vector(); // Makes the vector a unit vector
+	vector_3d& make_unit_vector(); // Makes the vector a unit vector
 
 	vector_3d unit_vector() const; // Returns a unit vector
 };

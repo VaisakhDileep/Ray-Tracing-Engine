@@ -15,14 +15,14 @@ ray::ray() // No-args constructor
 	direction_vec = vector_3d {};
 }
 
-ray::ray(const vector_3d &origin_vec, const vector_3d &direction_vec) // Overloaded constructor
+ray::ray(const point_3d &origin_vec, const vector_3d &direction_vec) // Overloaded constructor
 {
 	this->origin_vec = origin_vec;
 
 	this->direction_vec = direction_vec;
 }
 
-vector_3d ray::origin() const // Returns the origin vector
+point_3d ray::origin() const // Returns the origin vector
 {
 	return origin_vec;
 }
@@ -32,7 +32,7 @@ vector_3d ray::direction() const // Returns the direction vector
 	return direction_vec;
 }
 
-vector_3d ray::point_at_parameter(double time) const // Returns the current position of the ray.
+point_3d ray::point_at_parameter(double time) const // Returns the current position of the ray.
 {
 	return origin_vec + (time * direction_vec);
 }

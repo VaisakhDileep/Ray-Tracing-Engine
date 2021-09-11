@@ -12,13 +12,13 @@ Description : Class declaration for the sphere class.
 class sphere: public hitable
 {
 public:
-	vector_3d center; // Center of the sphere
+	point_3d center; // Center of the sphere
 
 	double radius;
 
 	sphere(); // No-args constructor
 
-	sphere(vector_3d center, double radius); // Overloaded constructor
+	sphere(point_3d center, double radius); // Overloaded constructor
 
 	virtual bool hit(const ray &r, double t_min, double t_max, hit_record &record) const;
 };

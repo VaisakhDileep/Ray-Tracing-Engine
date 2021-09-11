@@ -248,13 +248,15 @@ double vector_3d::squared_length() const
 	return d[0] * d[0] + d[1] * d[1] + d[2] * d[2];
 }
 
-void vector_3d::make_unit_vector() // Makes the vector a unit vector.
+vector_3d& vector_3d::make_unit_vector() // Makes the vector a unit vector.
 {
 	double length {sqrt(d[0] * d[0] + d[1] * d[1] + d[2] * d[2])};
 
 	d[0] /= length;
 	d[1] /= length;
 	d[2] /= length;
+
+	return *this;
 }
 
 vector_3d vector_3d::unit_vector() const // Returns a unit vector.

@@ -18,11 +18,11 @@ bool hit_sphere(const point_3d &center_of_sphere, double radius_of_sphere, const
 
 	double a {dot(r.direction(), r.direction())}; // ax^2 + bx^1 + cx^0.
 
-	double b {2 * dot(ray_origin_to_center_of_sphere, r.direction())};
+	double b {2.0 * dot(ray_origin_to_center_of_sphere, r.direction())};
 
 	double c {dot(ray_origin_to_center_of_sphere, ray_origin_to_center_of_sphere) - (radius_of_sphere * radius_of_sphere)};
 
-	double discriminant {(b * b) - (4 * a * c)};
+	double discriminant {(b * b) - (4.0 * a * c)};
 
 	return (discriminant > 0);
 }

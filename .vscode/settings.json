@@ -1,7 +1,5 @@
 {
 	"files.associations": {
-		"filesystem": "cpp",
-		"iosfwd": "cpp",
-		"iostream": "cpp"
+		"limits": "cpp"
 	}
 }
