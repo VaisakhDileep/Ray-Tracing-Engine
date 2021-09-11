@@ -34,4 +34,9 @@ void write_colour_0_255_format(ofstream &out_file, const colour_3d pixel)
 	out_file<<pixel.r()<<" "<<pixel.g()<<" "<<pixel.b()<<"    ";
 }
 
+void write_colour_0_255_format(ofstream &out_file, const colour_3d pixel, const int samples_per_pixel)
+{
+	out_file<<static_cast<int>(pixel.r() / samples_per_pixel)<<" "<<static_cast<int>(pixel.g() / samples_per_pixel)<<" "<<static_cast<int>(pixel.b() / samples_per_pixel)<<"    ";
+}
+
 #endif

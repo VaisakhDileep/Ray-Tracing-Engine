@@ -4,7 +4,7 @@ Date		: 10, September, 2021
 Description : Constructing multiple spheres(one huge one).
 */
 
-#include<iostream>
+#include<fstream>
 
 #include "../../src/sphere/sphere.hpp"
 
