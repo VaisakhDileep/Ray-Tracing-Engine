@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
-Date		: 11, September, 2021
-Description : Constructing a sphere with antialiasing enabled.
+Date		: 12, September, 2021
+Description : Constructing a matte sphere.
 */
 
 #include "../../src/sphere/sphere.hpp"
@@ -16,27 +16,29 @@ Description : Constructing a sphere with antialiasing enabled.
 
 using namespace std;
 
-colour_3d colour_output(const ray &r, const hitable_list &world)
+colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 {
 	hit_record record {};
 
 	if(world.hit(r, 0, infinity, record))
 	{
-		return colour_3d {0, 255, 0};
+		point_3d target = record.p + record.normal + random_3_d_vector_in_unit_sphere();
+
+		return 0.5 *colour_output(ray {record.p, target - record.p}, world, depth - 1);
 	}
 	else
 	{
-		return colour_3d {0, 0, 0}; // Background.
+		return colour_3d {255, 255, 255};
 	}
 }
 
 void paint()
 {
-	hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5)}};
+	hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000)}};
 
 	ofstream out_file {"sphere.ppm"};
 
-	int width {200}, height {100}, samples_per_pixel {100};
+	int width {200}, height {100}, samples_per_pixel {100}, max_depth {50};
 
 	initialize_p_3_file(out_file, width, height);
 
@@ -54,7 +56,7 @@ void paint()
 
 				ray r {cam.get_ray(u, v)};
 
-				colour+=colour_output(r, world);
+				colour+=colour_output(r, world, max_depth);
 			}
 			write_colour_0_255_format(out_file, colour, samples_per_pixel);
 		}
