@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date		: 12, September, 2021
-Description : Constructing a matte sphere using rejection method.
+Description : Constructing a sphere using lambertion method.
 */
 
 #include "../../src/sphere/sphere.hpp"
@@ -22,7 +22,7 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 
 	if(world.hit(r, 0.001, infinity, record)) // We ignore very near hits.
 	{
-		point_3d target {record.p + record.normal + random_3_d_vector_in_unit_sphere()};
+		point_3d target {record.p + record.normal + random_3_d_vector_in_unit_sphere_surface()};
 
 		return 0.5 *colour_output(ray {record.p, target - record.p}, world, depth - 1);
 	}

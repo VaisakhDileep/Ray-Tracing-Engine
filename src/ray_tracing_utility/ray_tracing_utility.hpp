@@ -60,9 +60,13 @@ vector_3d random_3_d_vector_in_unit_sphere()
 		{
 			continue;
 		}
-
 		return p;
 	}
+}
+
+vector_3d random_3_d_vector_in_unit_sphere_surface()
+{
+	return random_3_d_vector_in_unit_sphere().unit_vector();
 }
 
 #endif
