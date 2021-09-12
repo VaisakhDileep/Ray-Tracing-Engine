@@ -20,15 +20,15 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 {
 	hit_record record {};
 
-	if(world.hit(r, 0, infinity, record))
+	if(world.hit(r, 0.001, infinity, record)) // We ignore very near hits.
 	{
-		point_3d target = record.p + record.normal + random_3_d_vector_in_unit_sphere();
+		point_3d target {record.p + record.normal + random_3_d_vector_in_unit_sphere()};
 
 		return 0.5 *colour_output(ray {record.p, target - record.p}, world, depth - 1);
 	}
 	else
 	{
-		return colour_3d {255, 255, 255};
+		return colour_3d {1, 1, 1}; // Returing in 0..1 format.
 	}
 }
 
@@ -58,7 +58,7 @@ void paint()
 
 				colour+=colour_output(r, world, max_depth);
 			}
-			write_colour_0_255_format(out_file, colour, samples_per_pixel);
+			write_colour_0_1_format(out_file, colour, samples_per_pixel, 2.2); // gama correction = 2.2
 		}
 		out_file<<"\n";
 	}

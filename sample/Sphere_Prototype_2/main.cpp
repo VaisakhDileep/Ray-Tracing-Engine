@@ -4,10 +4,6 @@ Date		: 9, September, 2021
 Description : Constructing a sphere with shader enabled.
 */
 
-#include<fstream>
-
-#include<math.h>
-
 #include "../../src/ray/ray.hpp"
 
 #include "../../src/colour/colour.hpp"

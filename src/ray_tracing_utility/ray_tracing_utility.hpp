@@ -7,8 +7,6 @@ Description : Class definition for the ray_tracing_utility class.
 #ifndef _RAY_TRACING_UTILITY_HPP_
 #define _RAY_TRACING_UTILITY_HPP_
 
-#define _USE_MATH_DEFINES // we need to use "_USE_MATH_DEFINES" inorder to use "M_PI". Make sure to define it before include the "math.h" library.
-
 #include<fstream>
 
 #include<limits>
@@ -23,7 +21,7 @@ using namespace std;
 
 const double infinity {numeric_limits<double>::infinity()};
 
-const double pi {M_PI};
+const double pi {3.14159265358979323846};
 
 void initialize_p_3_file(ofstream &out_file, int width, int height)
 {
