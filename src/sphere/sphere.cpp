@@ -1,6 +1,6 @@
 /*
 Created by  : Vaisakh Dileep
-Date		: 8, September, 2021
+Date        : 8, September, 2021
 Description : Class implementation for the sphere class.
 */
 
@@ -11,55 +11,64 @@ Description : Class implementation for the sphere class.
 using namespace std;
 
 sphere::sphere() // No-args constructor
-	: center {vector_3d {0, 0, 0}}, radius {0}
+    : center {point_3d {0, 0, 0}}, radius {0}, material_ptr {nullptr}
 {
 }
 
-sphere::sphere(vector_3d center, double radius) // Overloaded constructor
-	: center {center}, radius {radius}
+sphere::sphere(point_3d center, double radius) // Overloaded constructor
+    : center {center}, radius {radius}, material_ptr {nullptr}
+{
+}
+
+sphere::sphere(point_3d center, double radius, shared_ptr<material> material_ptr) // Overloaded constructor
+    : center {center}, radius {radius}, material_ptr {material_ptr}
 {
 }
 
 bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) const
 {
-	vector_3d ray_origin_to_center_of_sphere {r.origin() - center};
+    vector_3d ray_origin_to_center_of_sphere {r.origin() - center};
 
-	double a {dot(r.direction(), r.direction())}; // ax^2 + bx^1 + cx^0.
+    double a {dot(r.direction(), r.direction())}; // ax^2 + bx^1 + cx^0.
 
-	double b {2 * dot(ray_origin_to_center_of_sphere, r.direction())};
+    double b {2 * dot(ray_origin_to_center_of_sphere, r.direction())};
 
-	double c {dot(ray_origin_to_center_of_sphere, ray_origin_to_center_of_sphere) - (radius * radius)};
+    double c {dot(ray_origin_to_center_of_sphere, ray_origin_to_center_of_sphere) - (radius * radius)};
 
-	double discriminant {(b * b) - (4 * a * c)};
+    double discriminant {(b * b) - (4 * a * c)};
 
-	if(discriminant > 0)
-	{
-		double solution = (-b - sqrt(discriminant)) / (2 * a);
+    if(discriminant > 0)
+    {
+        double solution = (-b - sqrt(discriminant)) / (2 * a);
 
-		if((solution > t_min) and (solution < t_max))
-		{
-			record.t = solution;
+        if((solution > t_min) and (solution < t_max))
+        {
+            record.t = solution;
 
-			record.p = r.point_at_parameter(solution);
+            record.p = r.point_at_parameter(solution);
 
-			record.normal = (r.point_at_parameter(solution) - center).make_unit_vector();
+            record.normal = (r.point_at_parameter(solution) - center).make_unit_vector();
 
-			return true;
-		}
+            record.material_ptr = material_ptr;
 
-		solution = (-b + sqrt(discriminant)) / (2 * a);
+            return true;
+        }
 
-		if((solution > t_min) and (solution < t_max))
-		{
-			record.t = solution;
+        solution = (-b + sqrt(discriminant)) / (2 * a);
 
-			record.p = r.point_at_parameter(solution);
+        if((solution > t_min) and (solution < t_max))
+        {
+            record.t = solution;
 
-			record.normal = (r.point_at_parameter(solution) - center).make_unit_vector();
+            record.p = r.point_at_parameter(solution);
 
-			return true;
-		}
-	}
+            record.normal = (r.point_at_parameter(solution) - center).make_unit_vector();
 
-	return false;
+            record.material_ptr = material_ptr;
+
+            return true;
+        }
+    }
+
+    return false;
 }

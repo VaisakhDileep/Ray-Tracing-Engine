@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
-Date        : 12, September, 2021
-Description : Constructing a matte sphere using rejection method.
+Date        : 3, October, 2021
+Description : Constructing a metallic sphere.
 */
 
 #include "../../src/sphere/sphere.hpp"
@@ -14,6 +14,10 @@ Description : Constructing a matte sphere using rejection method.
 
 #include "../../src/camera/camera.hpp"
 
+#include "../../src/metal/metal.hpp"
+
+#include "../../src/lambertian/lambertian.hpp"
+
 using namespace std;
 
 colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
@@ -25,21 +29,26 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 
     hit_record record {};
 
-    if(world.hit(r, 0.001, infinity, record)) // We ignore very near hits.
-    {
-        point_3d target {record.p + record.normal + random_3_d_vector_in_unit_sphere()};
+    ray scattered_ray {};
 
-        return 0.5 *colour_output(ray {record.p, target - record.p}, world, depth - 1);
-    }
-    else
+    colour_3d attenuation {};
+
+    if(world.hit(r, 0.0001, infinity, record))
     {
-        return colour_3d {1, 1, 1}; // Returing in 0..1 format.
+        if(record.material_ptr->scatter(r, record, attenuation, scattered_ray))
+        {
+            return attenuation * colour_output(scattered_ray, world, depth - 1);
+        }
+        else
+        {
+            return colour_3d {0, 0, 0};
+        }
     }
 }
 
 void paint()
 {
-    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000)}};
+    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<metal>(colour_3d {192, 192, 192})), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {0, 255, 0}))}};
 
     ofstream out_file {"sphere.ppm"};
 
