@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 18, August, 2021
-Description : Class defintion for the vector class(3 dimensional).
+Description : Class declaration for the vector class(3 dimensional).
 */
 
 #ifndef _VECTOR_3_D_HPP_
@@ -73,9 +73,9 @@ public:
 
     vector_3d unit_vector() const; // Returns a unit vector
 
-    void convert_0_255_to_0_1(); // Converts colour in [0, 255] format to [0, 1] format
+    vector_3d& convert_0_255_to_0_1(); // Converts colour in [0, 255] format to [0, 1] format
 
-    void convert_0_1_to_0_255(); // Converts colour in [0, 1] format to [0, 255] format.
+    vector_3d& convert_0_1_to_0_255(); // Converts colour in [0, 1] format to [0, 255] format.
 };
 
 using point_3d = vector_3d; // 3D point

@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 14, September, 2021
-Description : This program finds all the matching pattern in a string using Knuth Morris Pratt algorithm.
+Description : Abstract class for material.
 */
 
 #ifndef _MATERIAL_HPP_

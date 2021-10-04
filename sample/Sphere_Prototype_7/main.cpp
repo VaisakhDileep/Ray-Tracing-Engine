@@ -48,7 +48,7 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 
 void paint()
 {
-    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<metal>(colour_3d {192, 192, 192})), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {0, 255, 0}))}};
+    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<lambertian>(colour_3d {192, 192, 192}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {0, 255, 0}.convert_0_255_to_0_1()))}};
 
     ofstream out_file {"sphere.ppm"};
 

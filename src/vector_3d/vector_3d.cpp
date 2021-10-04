@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 18, August, 2021
-Description : Class implementation for the vector class(3 dimensional).
+Description : Class definition for the vector class(3 dimensional).
 */
 
 #include "vector_3d.hpp"
@@ -266,14 +266,14 @@ vector_3d vector_3d::unit_vector() const // Returns a unit vector.
     return vector_3d {d[0] / length, d[1] / length, d[2] / length};
 }
 
-void vector_3d::convert_0_255_to_0_1() // Converts colour in [0, 255] format to [0, 1] format.
+vector_3d& vector_3d::convert_0_255_to_0_1() // Converts colour in [0, 255] format to [0, 1] format.
 {
-    d[0] /= 255;
-    d[1] /= 255;
-    d[2] /= 255;
+    d[0] /= 255.00;
+    d[1] /= 255.00;
+    d[2] /= 255.00;
 }
 
-void vector_3d::convert_0_1_to_0_255() // Converts colour in [0, 1] format to [0, 255] format.
+vector_3d& vector_3d::convert_0_1_to_0_255() // Converts colour in [0, 1] format to [0, 255] format.
 {
     d[0] *= 255.9999;
     d[1] *= 255.9999;

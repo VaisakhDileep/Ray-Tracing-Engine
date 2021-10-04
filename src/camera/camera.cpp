@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 11, September, 2021
-Description : Class implementation for the camera class.
+Description : Class definition for the camera class.
 */
 
 #include "camera.hpp"

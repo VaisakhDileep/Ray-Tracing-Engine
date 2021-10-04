@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 10, September, 2021
-Description : Class implementation for the hitable_list class.
+Description : Class definition for the hitable_list class.
 */
 
 #include "hitable_list.hpp"

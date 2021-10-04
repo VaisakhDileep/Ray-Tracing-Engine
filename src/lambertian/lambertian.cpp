@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 19, September, 2021
-Description : Class implementation of the lambertian class.
+Description : Class definition for the lambertian class.
 */
 
 #include "lambertian.hpp"

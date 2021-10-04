@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 20, September, 2021
-Description : Class definition for the metal class.
+Description : Class declaration for the metal class.
 */
 
 #ifndef _METAL_HPP_

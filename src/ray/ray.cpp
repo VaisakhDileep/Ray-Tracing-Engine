@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 22, August, 2021
-Description : Class implementation for the ray class.
+Description : Class definition for the ray class.
 */
 
 #include "ray.hpp"

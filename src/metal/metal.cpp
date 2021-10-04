@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 20, September, 2021
-Description : Class implementation for the metal class.
+Description : Class definition for the metal class.
 */
 
 #include "metal.hpp"
