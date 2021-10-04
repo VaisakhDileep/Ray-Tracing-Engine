@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 8, September, 2021
-Description : Class implementation for the sphere class.
+Description : Class definition for the sphere class.
 */
 
 #include "sphere.hpp"

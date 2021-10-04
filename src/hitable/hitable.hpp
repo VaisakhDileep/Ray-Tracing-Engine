@@ -29,26 +29,7 @@ struct hit_record
 
     bool outer_face;
 
-    void set_face_normal(const ray &r, const vector_3d &outward_normal)
-    {
-        if(dot(r.direction(), outward_normal) < 0)
-        {
-            outer_face = true;
-        }
-        else
-        {
-            outer_face = false;
-        }
-
-        if(outer_face == true)
-        {
-            normal = outward_normal;
-        }
-        else
-        {
-            normal = -outward_normal;
-        }
-    }
+    void set_face_normal(const ray &r, const vector_3d &outward_normal);
 };
 
 class hitable // Abstract class

@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 19, September, 2021
-Description : Class definition for the lambertian class.
+Description : Class declaration for the lambertian class.
 */
 
 #ifndef _LAMBERTIAN_HPP_
