@@ -30,9 +30,10 @@ bool metal::scatter(const ray &incident_ray, const hit_record &record, colour_3d
 
     attenuation = albedo;
 
-    if(dot(scattered_ray.direction(), record.normal) == 0) // Since both of them are unit-vectors, if they are in opposite direction, they will null out(angle of incidence is '0 degree').
+    if(dot(scattered_ray.direction(), record.normal) == 0) // They will only grace the surface.
     {
         return false;
     }
+
     return true;
 }
