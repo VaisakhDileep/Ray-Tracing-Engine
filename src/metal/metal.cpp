@@ -24,7 +24,7 @@ metal::metal(colour_3d albedo) // Overloaded constructor
 
 bool metal::scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const
 {
-    vector_3d reflected_ray_direction {reflect(incident_ray.direction().unit_vector(), record.normal)};
+    vector_3d reflected_ray_direction {reflect(incident_ray.direction(), record.normal)};
 
     scattered_ray = ray {record.p, reflected_ray_direction};
 
