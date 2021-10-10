@@ -16,9 +16,13 @@ class metal: public material
 public:
     colour_3d albedo;
 
+    double roughness; // roughness varies from [0, 1].
+
     metal(); // No-args constructor
 
     metal(colour_3d albedo); // Overloaded constructor
+
+    metal(colour_3d albedo, double roughness); // Overloaded constructor
 
     virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const override;
 };
