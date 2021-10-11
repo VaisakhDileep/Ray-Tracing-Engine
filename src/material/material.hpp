@@ -14,7 +14,9 @@ struct hit_record; // Forward declaration.
 class material // Abstract class.
 {
 public:
-    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const = 0;
+    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const = 0; // For metal and lambertian.
+
+    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray, double refractive_index_incident_material) const = 0; // For dielectric.
 };
 
 #endif
