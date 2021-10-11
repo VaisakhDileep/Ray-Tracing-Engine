@@ -35,4 +35,6 @@ vector_3d random_3_d_vector_in_unit_sphere_surface();
 
 vector_3d reflect(const vector_3d &incident_ray, const vector_3d &normal);
 
+vector_3d refract(const vector_3d &incident_ray, const vector_3d &normal, double relative_refractive_index); // "relative_refractive_index" = (refractive index of tranmitted medium / refractive index of incident medium).
+
 #endif
