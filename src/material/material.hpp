@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 14, September, 2021
-Description : Class for material.
+Description : Class declaration for the material class.
 */
 
 #ifndef _MATERIAL_HPP_
