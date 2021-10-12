@@ -51,6 +51,8 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
 
             record.material_ptr = material_ptr;
 
+            record.set_face_normal(r, record.normal);
+
             return true;
         }
 
