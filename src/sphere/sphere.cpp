@@ -47,11 +47,9 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
 
             record.p = r.point_at_parameter(solution);
 
-            record.normal = (r.point_at_parameter(solution) - center).make_unit_vector();
-
             record.material_ptr = material_ptr;
 
-            record.set_face_normal(r, record.normal);
+            record.set_face_normal(r, (r.point_at_parameter(solution) - center).make_unit_vector());
 
             return true;
         }
