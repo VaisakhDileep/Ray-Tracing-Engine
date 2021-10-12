@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 14, September, 2021
-Description : Class declaration for the material class.
+Description : Abstract class for material.
 */
 
 #ifndef _MATERIAL_HPP_
@@ -14,9 +14,7 @@ struct hit_record; // Forward declaration.
 class material
 {
 public:
-    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const; // For metal and lambertian.
-
-    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray, double refractive_index_incident_material) const; // For dielectric.
+    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const = 0;
 };
 
 #endif
