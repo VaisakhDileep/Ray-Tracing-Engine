@@ -14,13 +14,17 @@ using namespace std;
 class dielectric: public material
 {
 public:
-    double refractive_index;
+    double refractive_index_medium;
+
+    double refractive_index_external_medium;
 
     dielectric(); // No-args constructor
 
-    dielectric(double index_of_refraction);
+    dielectric(double refractive_index_medium); // Overloaded constructor
 
-    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray, double refractive_index_incident_material) const override;
+    dielectric(double refractive_index_medium, double refractive_index_external_medium); // Overloaded constructor
+
+    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const override;
 };
 
 #endif
