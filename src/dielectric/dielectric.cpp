@@ -13,12 +13,12 @@ Description : Class definition for the dielectric class.
 using namespace std;
 
 dielectric::dielectric() // No-args constructor
-    : refractive_index_medium {0.0}, refractive_index_external_medium {1.0} // refractive_index_external_medium will default to '1.0'.
+    : refractive_index_medium {0.0}, refractive_index_external_medium {1.0} // "refractive_index_external_medium" will default to '1.0'.
 {
 }
 
 dielectric::dielectric(double refractive_index_medium) // Overloaded constructor
-    : refractive_index_medium {refractive_index_medium}, refractive_index_external_medium {1.0} // refractive_index_external_medium will default to '1.0'.
+    : refractive_index_medium {refractive_index_medium}, refractive_index_external_medium {1.0} // "refractive_index_external_medium" will default to '1.0'.
 {
 }
 
