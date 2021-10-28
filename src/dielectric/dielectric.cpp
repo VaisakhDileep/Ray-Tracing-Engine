@@ -10,6 +10,8 @@ Description : Class definition for the dielectric class.
 
 #include "../ray_tracing_utility/ray_tracing_utility.hpp"
 
+#include<math.h>
+
 using namespace std;
 
 dielectric::dielectric() // No-args constructor
@@ -42,7 +44,22 @@ bool dielectric::scatter(const ray &incident_ray, const hit_record &record, colo
         relative_refractive_index = refractive_index_medium / refractive_index_external_medium;
     }
 
-    vector_3d refracted_ray_direction {refract(incident_ray.direction(), record.normal, relative_refractive_index)};
+    vector_3d incident_ray_unit_vector {incident_ray.direction().unit_vector()};
+
+    double cos_incident_angle {dot(-incident_ray_unit_vector, record.normal)}; // We reverse "incident_ray_unit_vector" so that the angle between "incident_ray_unit_vector" and "normal" is acute.
+
+    double sin_incident_angle {sqrt(1.00 - cos_incident_angle * cos_incident_angle)};
+
+    vector_3d refracted_ray_direction {};
+
+    if(relative_refractive_index * sin_incident_angle <= 1.00) // Obeys snell's law, the raw will refract.
+    {
+        refracted_ray_direction = refract(incident_ray.direction(), record.normal, relative_refractive_index);
+    }
+    else // The ray will be reflected since it doesn't obey snell's law.
+    {
+        refracted_ray_direction = reflect(incident_ray.direction(), record.normal);
+    }
 
     scattered_ray = ray {record.p, refracted_ray_direction};
 
