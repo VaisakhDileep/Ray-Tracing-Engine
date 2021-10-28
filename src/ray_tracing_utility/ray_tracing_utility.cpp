@@ -65,7 +65,7 @@ vector_3d refract(const vector_3d &incident_ray_direction, const vector_3d &norm
 
     vector_3d incident_ray_unit_vector {incident_ray_direction.unit_vector()};
 
-    double cos_incident_angle {dot(-incident_ray_unit_vector, normal)}; // We reverse "incident_ray_unit_vector" so that the angle between "incident_ray_unit_vector" and "normal" is actute.
+    double cos_incident_angle {dot(-incident_ray_unit_vector, normal)}; // We reverse "incident_ray_unit_vector" so that the angle between "incident_ray_unit_vector" and "normal" is acute.
 
     vector_3d transmitted_ray_component_perpendicular_to_normal {relative_refractive_index * (incident_ray_unit_vector + cos_incident_angle * normal)}; // Will be tangential to the normal.
 
