@@ -20,6 +20,7 @@ public:
     ray(const vector_3d &origin_vec, const vector_3d &direction_vec); // Overloaded constructor
 
     point_3d origin() const; // Returns the origin vector
+
     vector_3d direction() const; // Returns the direction vector
 
     point_3d point_at_parameter(double time) const; // Returns the current position of the ray.
