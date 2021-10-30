@@ -35,7 +35,7 @@ bool dielectric::scatter(const ray &incident_ray, const hit_record &record, colo
 
     double relative_refractive_index {};
 
-    if(record.outer_face == true)
+    if(record.outer_face == true) // If the radius is given as negative, then it will invert the "record.outer_face" value thereby inverting the refractive indices.
     {
         relative_refractive_index = refractive_index_external_medium / refractive_index_medium;
     }
@@ -46,7 +46,7 @@ bool dielectric::scatter(const ray &incident_ray, const hit_record &record, colo
 
     vector_3d incident_ray_unit_vector {incident_ray.direction().unit_vector()};
 
-    double cos_incident_angle {dot(-incident_ray_unit_vector, record.normal)}; // We reverse "incident_ray_unit_vector" so that the angle between "incident_ray_unit_vector" and "normal" is acute.
+    double cos_incident_angle {dot(-incident_ray_unit_vector, record.normal)}; // We reverse "incident_ray_unit_vector" so that "incident_ray_unit_vector" and "normal" are in the same direction.
 
     double sin_incident_angle {sqrt(1.00 - cos_incident_angle * cos_incident_angle)};
 
