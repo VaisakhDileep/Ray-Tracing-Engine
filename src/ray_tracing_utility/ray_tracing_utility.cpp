@@ -73,3 +73,12 @@ vector_3d refract(const vector_3d &incident_ray_direction, const vector_3d &norm
 
     return transmitted_ray_component_perpendicular_to_normal + transmitted_ray_component_parallel_to_normal;
 }
+
+double schlicks_approximation(double cos_incident_angle, double relative_refractive_index)
+{
+    double R_zero {pow((1 - relative_refractive_index) / (1 + relative_refractive_index), 2)};
+
+    double R_theta {R_zero + (1 - R_zero) * pow((1 - cos_incident_angle), 5)}; // Probability that the ray is reflected.
+
+    return R_theta;
+}
