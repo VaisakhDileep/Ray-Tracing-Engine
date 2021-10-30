@@ -52,13 +52,13 @@ bool dielectric::scatter(const ray &incident_ray, const hit_record &record, colo
 
     vector_3d refracted_ray_direction {};
 
-    if(relative_refractive_index * sin_incident_angle <= 1.00) // Obeys snell's law, the raw will refract.
-    {
-        refracted_ray_direction = refract(incident_ray.direction(), record.normal, relative_refractive_index);
-    }
-    else // The ray will be reflected since it doesn't obey snell's law.
+    if((relative_refractive_index * sin_incident_angle > 1.00) or (schlicks_approximation(cos_incident_angle, relative_refractive_index) > random_double_range_0_1()))  // The ray will be reflected if it doesn't obey snell's law. Some of the rays will also be reflected depending on the angle of incidence(schlick's approximation).
     {
         refracted_ray_direction = reflect(incident_ray.direction(), record.normal);
+    }
+    else // Obeys snell's law, the ray will refract.
+    {
+        refracted_ray_direction = refract(incident_ray.direction(), record.normal, relative_refractive_index);
     }
 
     scattered_ray = ray {record.p, refracted_ray_direction};

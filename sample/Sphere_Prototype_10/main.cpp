@@ -52,7 +52,7 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 
 void paint()
 {
-    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<dielectric>(1.5)), make_shared<sphere>(point_3d {0, 0, -1}, -0.4, make_shared<dielectric>(1.5)), make_shared<sphere>(point_3d {0, -100.5, -1}, 100, make_shared<lambertian>(colour_3d {0, 1, 0}))}};
+    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<dielectric>(1.05)), make_shared<sphere>(point_3d {0, 0, -1}, -0.45, make_shared<dielectric>(1.05)), make_shared<sphere>(point_3d {0.75, 0, -2}, 0.5, make_shared<lambertian>(colour_3d {51, 255, 255}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {-0.75, 0, -2}, 0.5, make_shared<lambertian>(colour_3d {255, 153, 153}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {102, 178, 255}.convert_0_255_to_0_1()))}};
 
     ofstream out_file {"sphere.ppm"};
 
