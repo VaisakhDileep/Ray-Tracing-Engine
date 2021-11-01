@@ -275,7 +275,7 @@ vector_3d& vector_3d::convert_0_255_to_0_1() // Converts colour in [0, 255] form
 
 vector_3d& vector_3d::convert_0_1_to_0_255() // Converts colour in [0, 1] format to [0, 255] format.
 {
-    d[0] *= 255.9999;
-    d[1] *= 255.9999;
-    d[2] *= 255.9999;
+    d[0] = floor(d[0] * 255.9999);
+    d[1] = floor(d[1] * 255.9999);
+    d[2] = floor(d[2] * 255.9999);
 }
