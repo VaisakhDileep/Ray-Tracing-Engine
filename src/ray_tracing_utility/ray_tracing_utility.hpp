@@ -39,4 +39,6 @@ vector_3d refract(const vector_3d &incident_ray, const vector_3d &normal, double
 
 double schlicks_approximation(double cos_incident_angle, double relative_refractive_index);
 
+double degrees_to_radians(double degree);
+
 #endif

@@ -82,3 +82,8 @@ double schlicks_approximation(double cos_incident_angle, double relative_refract
 
     return R_theta;
 }
+
+double degrees_to_radians(double degree)
+{
+    return (degree * pi) / 180.00;
+}

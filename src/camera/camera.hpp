@@ -24,6 +24,8 @@ public:
 
     camera(point_3d origin, vector_3d upper_left_corner, vector_3d horizontal_sweep, vector_3d vertical_sweep); // Overloaded constructor
 
+    camera(double vertical_fov, double aspect_ratio);
+
     void set_origin(point_3d origin);
 
     void set_upper_left_corner(vector_3d upper_left_corner);
