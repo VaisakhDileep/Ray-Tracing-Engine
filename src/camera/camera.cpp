@@ -22,7 +22,7 @@ camera::camera(point_3d origin, vector_3d upper_left_corder, vector_3d horizonta
 {
 }
 
-camera::camera(double vertical_fov, double aspect_ratio)
+camera::camera(double vertical_fov, double aspect_ratio) // Overloaded constructor
 {
     origin = vector_3d {0, 0, 0};
 
@@ -37,6 +37,31 @@ camera::camera(double vertical_fov, double aspect_ratio)
     horizontal_sweep = vector_3d {2 * vector_plane_half_width, 0, 0};
 
     vertical_sweep = vector_3d {0, -2 * vector_plane_half_height, 0};
+}
+
+camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio) // Overloaded constructor
+{
+    vector_3d u {}, v {}, w {}; // new 'x', 'y' and 'z' axis respectively.
+
+    double theta {degrees_to_radians(vertical_fov)}; // "vertical_fov" stands for vertical field-of-view.
+
+    double vector_plane_half_height {tan(theta / 2)};
+
+    double vector_plane_half_width {aspect_ratio * vector_plane_half_height}; // aspect_ratio = width_vector_plane / height_vector_plane
+
+    origin = look_from;
+
+    w = (look_at - look_from).unit_vector();
+
+    u = cross(up_vector, w).unit_vector();
+
+    v = cross(w, u).unit_vector();
+
+    upper_left_corder = origin - w - (vector_plane_half_width * u) + (vector_plane_half_height * v); // This is with respect to {0, 0, 0} not the new the origin.
+
+    horizontal_sweep = 2 * vector_plane_half_width * u;
+
+    vertical_sweep = -2 * vector_plane_half_height * v;
 }
 
 void camera::set_origin(point_3d origin)
