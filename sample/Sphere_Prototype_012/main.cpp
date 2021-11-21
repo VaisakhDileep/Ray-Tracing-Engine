@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
-Date        : 1, November, 2021
-Description : Demonstrates the adjustable field-of-view property in the camera class.
+Date        : 8, November, 2021
+Description : Demonstrates the repositionable camera property in the camera class.
 */
 
 #include "../../src/sphere/sphere.hpp"
@@ -52,7 +52,7 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 
 void paint()
 {
-    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {-0.5, 0, -1}, 0.5, make_shared<lambertian>(colour_3d {230, 0, 255}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0.5, 0, -1}, 0.5, make_shared<lambertian>(colour_3d {0, 255, 247}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {128, 128, 128}.convert_0_255_to_0_1()))}};
+    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<dielectric>(1.5)), make_shared<sphere>(point_3d {0, 0, -1}, -0.45, make_shared<dielectric>(1.5)), make_shared<sphere>(point_3d {0, 0, -2}, 0.5, make_shared<lambertian>(colour_3d {255, 0, 239}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, 0, -3}, 0.5, make_shared<metal>(colour_3d {127, 127, 127}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {12, 157, 240}.convert_0_255_to_0_1()))}};
 
     ofstream out_file {"sphere.ppm"};
 
@@ -60,13 +60,13 @@ void paint()
 
     initialize_p_3_file(out_file, width, height);
 
-    // camera cam {90, static_cast<double>(width) / static_cast<double>(height)};
+    // camera cam {point_3d {0, 0, 0}, point_3d {0, 0, -1}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
 
-    // camera cam {45, static_cast<double>(width) / static_cast<double>(height)};
+    // camera cam {point_3d {0, 0, -4}, point_3d {0, 0, -3}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
 
-    // camera cam {22.5, static_cast<double>(width) / static_cast<double>(height)};
+    // camera cam {point_3d {1, 0, -2}, point_3d {0, 0, -2}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
 
-    camera cam {11.25, static_cast<double>(width) / static_cast<double>(height)};
+    camera cam {point_3d {-1, 0, -2}, point_3d {0, 0, -2}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
 
     for(int i {0}; i < height; i++)
     {

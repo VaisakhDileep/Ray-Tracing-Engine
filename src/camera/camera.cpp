@@ -51,13 +51,13 @@ camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double
 
     origin = look_from;
 
-    w = (look_at - look_from).unit_vector();
+    w = (look_from - look_at).unit_vector();
 
     u = cross(up_vector, w).unit_vector();
 
     v = cross(w, u).unit_vector();
 
-    upper_left_corder = origin - w - (vector_plane_half_width * u) + (vector_plane_half_height * v); // This is with respect to {0, 0, 0} not the new the origin.
+    upper_left_corder = origin - w - (vector_plane_half_width * u) + (vector_plane_half_height * v); // This is with respect to {0, 0, 0} not the new origin. The view-plane is 'w' units in front of the camera(the camera is at the new origin(not {0, 0, 0})).
 
     horizontal_sweep = 2 * vector_plane_half_width * u;
 
@@ -86,5 +86,5 @@ void camera::set_vertical_sweep(vector_3d vertical_sweep)
 
 ray camera::get_ray(double u, double v) const
 {
-    return ray {origin, upper_left_corder + (u * horizontal_sweep) + (v * vertical_sweep) - origin};
+    return ray {origin, upper_left_corder + (u * horizontal_sweep) + (v * vertical_sweep) - origin}; // This is with respect to the camera.
 }
