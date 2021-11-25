@@ -32,17 +32,15 @@ camera::camera(double vertical_fov, double aspect_ratio) // Overloaded construct
 
     double vector_plane_half_width {aspect_ratio * vector_plane_half_height}; // aspect_ratio = width_vector_plane / height_vector_plane
 
-    upper_left_corder = vector_3d {-vector_plane_half_width, vector_plane_half_height, -1};
-
     horizontal_sweep = vector_3d {2 * vector_plane_half_width, 0, 0};
 
     vertical_sweep = vector_3d {0, -2 * vector_plane_half_height, 0};
+
+    upper_left_corder = vector_3d {-vector_plane_half_width, vector_plane_half_height, -1};
 }
 
 camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio) // Overloaded constructor
 {
-    vector_3d u {}, v {}, w {}; // new 'x', 'y' and 'z' axis respectively.
-
     double theta {degrees_to_radians(vertical_fov)}; // "vertical_fov" stands for vertical field-of-view.
 
     double vector_plane_half_height {tan(theta / 2)};
@@ -55,13 +53,40 @@ camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double
 
     u = cross(up_vector, w).unit_vector();
 
-    v = cross(w, u).unit_vector();
-
-    upper_left_corder = origin - w - (vector_plane_half_width * u) + (vector_plane_half_height * v); // This is with respect to {0, 0, 0} not the new origin. The view-plane is 'w' units in front of the camera(the camera is at the new origin(not {0, 0, 0})).
+    v = cross(w, u); // Since 'w' and 'u' are already unit vectors, their cross product also results in a unit vector.
 
     horizontal_sweep = 2 * vector_plane_half_width * u;
 
     vertical_sweep = -2 * vector_plane_half_height * v;
+
+    upper_left_corder = origin - (vector_plane_half_width * u) + (vector_plane_half_height * v) - w; // This is with respect to {0, 0, 0} not the new origin. The view-plane is 'w' units in front of the camera(the camera is at the new origin("look_from")).
+}
+
+camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio, double aperture, double focus_distance) // Overloaded constructor
+{
+    double theta {degrees_to_radians(vertical_fov)}; // "vertical_fov" stands for vertical field-of-view.
+
+    double vector_plane_half_height {tan(theta / 2)}; // This is considering that the camera is placed '1' unit behind the vector plane(object plane).
+
+    double vector_plane_half_width {aspect_ratio * vector_plane_half_height}; // aspect_ratio = width_vector_plane / height_vector_plane
+
+    origin = look_from;
+
+    w = (look_from - look_at).unit_vector();
+
+    u = cross(up_vector, w).unit_vector();
+
+    v = cross(w, u); // Since 'w' and 'u' are already unit vectors, their cross product also results in a unit vector.
+
+    horizontal_sweep = focus_distance * (2 * vector_plane_half_width) * u; // Since we are using a pinhole camera, the magnification is linear. 'm' units away from the camera(focus distance) will result in a 'm' times magnification.
+
+    vertical_sweep = focus_distance * (2 * vector_plane_half_height) * v;
+
+// Note: Here we don't have an object plane, but a focus plane. We shoot the rays to the focus plane.
+
+    upper_left_corder = origin - horizontal_sweep / 2 - vertical_sweep / 2 - focus_distance * w; // This is with respect to {0, 0, 0} not the new origin. The view-plane is "focus_distance * w" units in front of the camera(the camera is at the new origin("look_from")).
+
+    lens_radius = aperture / 2; // aperture is the diameter.
 }
 
 void camera::set_origin(point_3d origin)
@@ -84,7 +109,11 @@ void camera::set_vertical_sweep(vector_3d vertical_sweep)
     this->vertical_sweep = vertical_sweep;
 }
 
-ray camera::get_ray(double u, double v) const
+ray camera::get_ray(double r, double c) const
 {
-    return ray {origin, upper_left_corder + (u * horizontal_sweep) + (v * vertical_sweep) - origin}; // This is with respect to the camera.
+    vector_3d random_vec {lens_radius * random_3_d_vector_in_unit_sphere()}; // This is a random point inside a sphere of radius "lens_radius" and center at {0, 0, 0}.
+
+    vector_3d offset = u * random_vec.x() + v * random_vec.y();
+
+    return ray {origin + offset, upper_left_corder + (r * horizontal_sweep) + (c * vertical_sweep) - origin - offset}; // This is with respect to the camera.
 }

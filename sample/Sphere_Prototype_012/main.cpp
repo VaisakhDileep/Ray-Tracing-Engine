@@ -52,11 +52,11 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 
 void paint()
 {
-    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<dielectric>(1.5)), make_shared<sphere>(point_3d {0, 0, -1}, -0.45, make_shared<dielectric>(1.5)), make_shared<sphere>(point_3d {0, 0, -2}, 0.5, make_shared<lambertian>(colour_3d {255, 0, 239}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, 0, -3}, 0.5, make_shared<metal>(colour_3d {127, 127, 127}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {12, 157, 240}.convert_0_255_to_0_1()))}};
+    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<lambertian>(colour_3d {255, 0, 0}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, 0, -2}, 0.5, make_shared<lambertian>(colour_3d {0, 255, 0}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, 0, -3}, 0.5, make_shared<lambertian>(colour_3d {0, 0, 255}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {12, 157, 240}.convert_0_255_to_0_1()))}};
 
     ofstream out_file {"sphere.ppm"};
 
-    int width {200}, height {100}, samples_per_pixel {100}, max_depth {50};
+    int width {200}, height {200}, samples_per_pixel {100}, max_depth {50};
 
     initialize_p_3_file(out_file, width, height);
 

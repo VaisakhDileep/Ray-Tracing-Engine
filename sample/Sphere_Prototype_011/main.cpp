@@ -60,13 +60,13 @@ void paint()
 
     initialize_p_3_file(out_file, width, height);
 
-    // camera cam {90, static_cast<double>(width) / static_cast<double>(height)};
+    camera cam {90, static_cast<double>(width) / static_cast<double>(height)};
 
     // camera cam {45, static_cast<double>(width) / static_cast<double>(height)};
 
     // camera cam {22.5, static_cast<double>(width) / static_cast<double>(height)};
 
-    camera cam {11.25, static_cast<double>(width) / static_cast<double>(height)};
+    // camera cam {11.25, static_cast<double>(width) / static_cast<double>(height)};
 
     for(int i {0}; i < height; i++)
     {
