@@ -11,6 +11,8 @@ Description : Utility functions for the ray-tracing engine(declaration).
 
 #include<limits>
 
+#include<chrono>
+
 #include "../vector_3d/vector_3d.hpp"
 
 using namespace std;
@@ -40,5 +42,7 @@ vector_3d refract(const vector_3d &incident_ray, const vector_3d &normal, double
 double schlicks_approximation(double cos_incident_angle, double relative_refractive_index);
 
 double degrees_to_radians(double degree);
+
+void elapsed_time(chrono::high_resolution_clock::time_point start, chrono::high_resolution_clock::time_point stop);
 
 #endif

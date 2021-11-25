@@ -87,3 +87,10 @@ double degrees_to_radians(double degree)
 {
     return (degree * pi) / 180.00;
 }
+
+void elapsed_time(chrono::high_resolution_clock::time_point start, chrono::high_resolution_clock::time_point stop)
+{
+    chrono::duration<double, ratio<1,1>> elapsed_time_in_s {stop - start};
+
+    cout<<"Elapsed time: "<<elapsed_time_in_s.count()<<"s\n";
+}

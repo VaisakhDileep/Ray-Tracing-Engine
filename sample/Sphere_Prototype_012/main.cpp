@@ -56,7 +56,7 @@ void paint()
 
     ofstream out_file {"sphere.ppm"};
 
-    int width {200}, height {200}, samples_per_pixel {100}, max_depth {50};
+    int width {200}, height {100}, samples_per_pixel {100}, max_depth {50};
 
     initialize_p_3_file(out_file, width, height);
 
@@ -90,7 +90,13 @@ void paint()
 
 int main()
 {
+    chrono::high_resolution_clock::time_point start {chrono::high_resolution_clock::now()};
+
     paint();
+
+    chrono::high_resolution_clock::time_point stop {chrono::high_resolution_clock::now()};
+
+    elapsed_time(start, stop);
 
     return 0;
 }
