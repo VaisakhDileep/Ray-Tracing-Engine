@@ -14,7 +14,7 @@ class camera
 public:
     point_3d origin;
 
-    vector_3d upper_left_corder;
+    vector_3d upper_left_corner;
 
     vector_3d horizontal_sweep;
 
