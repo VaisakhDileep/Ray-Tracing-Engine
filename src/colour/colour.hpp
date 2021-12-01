@@ -21,4 +21,6 @@ void write_colour_0_255_format(ofstream &out_file, const colour_3d pixel); // Fo
 
 void write_colour_0_255_format(ofstream &out_file, const colour_3d pixel, const int samples_per_pixel); // For 0..255 format, we are ignoring gama correction.
 
+colour_3d generate_random_colour(); // Generated colour is in 0..255 format.
+
 #endif

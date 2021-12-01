@@ -25,11 +25,11 @@ void initialize_p_3_file(ofstream &out_file, int width, int height);
 
 double random_double_range_0_1();
 
-double random_double_range_0_1(double min, double max);
+double random_double(double min, double max);
 
 vector_3d random_3_d_vector_range_0_1();
 
-vector_3d random_3_d_vector_range_0_1(double min, double max);
+vector_3d random_3_d_vector(double min, double max);
 
 vector_3d random_3_d_vector_in_unit_sphere();
 
