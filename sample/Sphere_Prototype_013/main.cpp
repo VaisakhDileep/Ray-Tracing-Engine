@@ -56,7 +56,7 @@ void paint()
 
     ofstream out_file {"sphere.ppm"};
 
-    int width {200}, height {100}, samples_per_pixel {100}, max_depth {50};
+    int width {400}, height {200}, samples_per_pixel {100}, max_depth {50};
 
     point_3d look_from {-2, 2, -1}, look_at {0, 0, -2};
 

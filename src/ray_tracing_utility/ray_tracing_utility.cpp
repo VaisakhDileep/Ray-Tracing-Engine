@@ -17,8 +17,6 @@ void initialize_p_3_file(ofstream &out_file, int width, int height)
 
 double random_double_range_0_1()
 {
-    srand(time(nullptr));
-
     return static_cast<double>(rand()) / (RAND_MAX + 1.0); // Range (0, 1], not including 1.
 }
 
