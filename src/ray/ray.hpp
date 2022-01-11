@@ -16,6 +16,8 @@ public:
 
     vector_3d direction_vec;
 
+    double time;
+
     ray(); // No-args constructor
     ray(const vector_3d &origin_vec, const vector_3d &direction_vec); // Overloaded constructor
 
@@ -23,7 +25,7 @@ public:
 
     vector_3d direction() const; // Returns the direction vector
 
-    point_3d point_at_parameter(double time) const; // Returns the current position of the ray.
+    point_3d point_at_parameter(double time) const; // Returns the current position of the ray
 };
 
 #endif

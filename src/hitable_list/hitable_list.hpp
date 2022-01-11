@@ -21,7 +21,6 @@ public:
     vector<shared_ptr<hitable>> object_list;
 
     hitable_list(); // No-args constructor
-
     hitable_list(vector<shared_ptr<hitable>> object_list); // Overloaded constructor
 
     void add_object(shared_ptr<hitable> object); // Adds an object to the vector list.
