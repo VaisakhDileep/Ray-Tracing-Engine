@@ -62,7 +62,7 @@ camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double
     upper_left_corner = origin - (vector_plane_half_width * u) + (vector_plane_half_height * v) - w; // This is with respect to {0, 0, 0} not the new origin. The view-plane is 'w' units in front of the camera(the camera is at the new origin("look_from")).
 }
 
-camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio, double aperture, double focus_distance) // Overloaded constructor
+camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio, double aperture, double focus_distance, double time_0 = 0.0, double time_1 = 0.0) // Overloaded constructor
 {
     double theta {degrees_to_radians(vertical_fov)}; // "vertical_fov" stands for vertical field-of-view.
 
@@ -89,6 +89,9 @@ camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double
 // Note: For "upper_left_corner" we used "-vertical_sweep / 2" because "vertical_sweep" is already negative and we need a positive value.
 
     lens_radius = aperture / 2; // aperture is the diameter.
+
+    this->time_0 = time_0;
+    this->time_1 = time_1;
 }
 
 void camera::set_origin(point_3d origin)
@@ -117,5 +120,5 @@ ray camera::get_ray(double r, double c) const
 
     vector_3d offset = u * random_vec.x() + v * random_vec.y();
 
-    return ray {origin + offset, upper_left_corner + (r * horizontal_sweep) + (c * vertical_sweep) - origin - offset}; // This is with respect to the camera.
+    return ray {origin + offset, upper_left_corner + (r * horizontal_sweep) + (c * vertical_sweep) - origin - offset, random_double(time_0, time_1)}; // This is with respect to the camera.
 }

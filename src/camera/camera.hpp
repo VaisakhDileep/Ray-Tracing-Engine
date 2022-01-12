@@ -22,13 +22,15 @@ public:
 
     double lens_radius {0}; // Only applicable when implementing depth-of-field.
 
+    double time_0 {0}, time_1 {0};
+
     vector_3d u {vector_3d {0, 0, 0}}, v {vector_3d {0, 0, 0}}, w {vector_3d {0, 0, 0}}; // new 'x', 'y' and 'z' axis respectively.
 
     camera(); // No-args constructor
     camera(point_3d origin, vector_3d upper_left_corner, vector_3d horizontal_sweep, vector_3d vertical_sweep); // Overloaded constructor
     camera(double vertical_fov, double aspect_ratio); // Overloaded constructor
     camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio); // Overloaded constructor
-    camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio, double aperture, double focus_distance); // Overloaded constructor
+    camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio, double aperture, double focus_distance, double time_0, double time_1); // Overloaded constructor
 
     void set_origin(point_3d origin);
 

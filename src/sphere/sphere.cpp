@@ -29,7 +29,7 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
 {
     vector_3d ray_origin_to_center_of_sphere {r.origin() - center};
 
-    double a {dot(r.direction(), r.direction())}; // ax^2 + bx^1 + cx^0.
+    double a {dot(r.direction(), r.direction())}; // ax^2 + bx^1 + cx^0
 
     double b {2 * dot(ray_origin_to_center_of_sphere, r.direction())};
 
