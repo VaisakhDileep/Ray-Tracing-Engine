@@ -26,7 +26,7 @@ bool lambertian::scatter(const ray &incident_ray, const hit_record &record, colo
 {
     vector_3d scatter_direction {record.normal + random_3_d_vector_in_unit_sphere_surface()};
 
-    scattered_ray = ray {record.p, scatter_direction};
+    scattered_ray = ray {record.p, scatter_direction, incident_ray.time()};
 
     attenuation = albedo;
 

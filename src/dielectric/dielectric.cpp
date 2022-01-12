@@ -61,7 +61,7 @@ bool dielectric::scatter(const ray &incident_ray, const hit_record &record, colo
         refracted_ray_direction = refract(incident_ray.direction(), record.normal, relative_refractive_index);
     }
 
-    scattered_ray = ray {record.p, refracted_ray_direction};
+    scattered_ray = ray {record.p, refracted_ray_direction, incident_ray.time()};
 
     return true;
 }
