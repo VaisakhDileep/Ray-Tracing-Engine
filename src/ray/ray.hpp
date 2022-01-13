@@ -16,7 +16,7 @@ public:
 
     vector_3d direction_vec;
 
-    double time_val;
+    double time_val {0};
 
     ray(); // No-args constructor
     ray(const vector_3d &origin_vec, const vector_3d &direction_vec, double time = 0.0); // Overloaded constructor

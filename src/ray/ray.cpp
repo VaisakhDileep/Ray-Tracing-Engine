@@ -13,9 +13,11 @@ ray::ray() // No-args constructor
     origin_vec = vector_3d {};
 
     direction_vec = vector_3d {};
+
+    time_val = 0;
 }
 
-ray::ray(const point_3d &origin_vec, const vector_3d &direction_vec, double time = 0.0) // Overloaded constructor
+ray::ray(const point_3d &origin_vec, const vector_3d &direction_vec, double time) // Overloaded constructor
 {
     this->origin_vec = origin_vec;
 

@@ -17,8 +17,8 @@ camera::camera() // No-args constructor
 {
 }
 
-camera::camera(point_3d origin, vector_3d upper_left_corner, vector_3d horizontal_sweep, vector_3d vertical_sweep) // Overloaded constructor
-    : origin {origin}, upper_left_corner {upper_left_corner}, horizontal_sweep {horizontal_sweep}, vertical_sweep {vertical_sweep}
+camera::camera(point_3d origin, vector_3d upper_left_corner, vector_3d horizontal_sweep, vector_3d vertical_sweep, double time_0, double time_1) // Overloaded constructor
+    : origin {origin}, upper_left_corner {upper_left_corner}, horizontal_sweep {horizontal_sweep}, vertical_sweep {vertical_sweep}, time_0 {time_0}, time_1 {time_1}
 {
 }
 
@@ -62,7 +62,7 @@ camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double
     upper_left_corner = origin - (vector_plane_half_width * u) + (vector_plane_half_height * v) - w; // This is with respect to {0, 0, 0} not the new origin. The view-plane is 'w' units in front of the camera(the camera is at the new origin("look_from")).
 }
 
-camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio, double aperture, double focus_distance, double time_0 = 0.0, double time_1 = 0.0) // Overloaded constructor
+camera::camera(point_3d look_from, point_3d look_at, vector_3d up_vector, double vertical_fov, double aspect_ratio, double aperture, double focus_distance, double time_0, double time_1) // Overloaded constructor
 {
     double theta {degrees_to_radians(vertical_fov)}; // "vertical_fov" stands for vertical field-of-view.
 
