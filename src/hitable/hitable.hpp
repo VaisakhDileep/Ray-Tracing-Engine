@@ -13,6 +13,8 @@ Description : Class definition for the hitable class.
 
 #include "../material/material.hpp"
 
+#include "../aabb/aabb.hpp"
+
 using namespace std;
 
 class material; // Forward declaration.
@@ -36,6 +38,8 @@ class hitable // Abstract class
 {
 public:
     virtual bool hit(const ray &r, double t_min, double t_max, hit_record &record) const = 0;
+
+    virtual bool bounding_box(double time_0, double time_1, aabb &output_box) const = 0; // "bool" is returned to denote whether we have successfully constructed the bounding volume.
 };
 
 #endif

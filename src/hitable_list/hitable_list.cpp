@@ -53,3 +53,32 @@ bool hitable_list::hit(const ray &r, double t_min, double t_max, hit_record &rec
 
     return hit_anything;
 }
+
+bool hitable_list::bounding_box(double time_0, double time_1, aabb &output_box) const
+{
+    if(object_list.size() == 0) // If the "world" is empty then there is no bounding box to create.
+    {
+        return false;
+    }
+
+    aabb current_box {};
+
+    if((object_list[0]->bounding_box(time_0, time_1, current_box)) == false)
+    {
+        return false;
+    }
+
+    output_box = current_box;
+
+    for(int i {1}; i < object_list.size(); i++)
+    {
+        if((object_list[i]->bounding_box(time_0, time_1, current_box)) == false)
+        {
+            return false;
+        }
+
+        output_box = surrounding_box(output_box, current_box);
+    }
+
+    return true;
+}

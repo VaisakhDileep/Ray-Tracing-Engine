@@ -91,3 +91,13 @@ bool moving_sphere::hit(const ray &r, double t_min, double t_max, hit_record &re
 
     return false;
 }
+
+bool moving_sphere::bounding_box(double _time_0, double _time_1, aabb &output_box) const
+{
+    aabb box_0 {center(_time_0) - vector_3d {radius, radius, radius}, center(_time_0) + vector_3d {radius, radius, radius}};
+    aabb box_1 {center(_time_1) - vector_3d {radius, radius, radius}, center(_time_1) + vector_3d {radius, radius, radius}};
+
+    output_box = surrounding_box(box_0, box_1);
+
+    return true;
+}

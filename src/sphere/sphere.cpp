@@ -86,3 +86,10 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
 
     return false;
 }
+
+bool sphere::bounding_box(double time_0, double time_1, aabb &output_box) const
+{
+    output_box = aabb {center - vector_3d {radius, radius, radius}, center + vector_3d {radius, radius, radius}};
+
+    return true;
+}

@@ -21,12 +21,12 @@ public:
     shared_ptr<material> material_ptr;
 
     sphere(); // No-args constructor
-
     sphere(point_3d center, double radius); // Overloaded constructor
-
     sphere(point_3d center, double radius, shared_ptr<material> material_ptr); // Overloaded constructor
 
     virtual bool hit(const ray &r, double t_min, double t_max, hit_record &record) const;
+
+    virtual bool bounding_box(double time_0, double time_1, aabb &output_box) const override;
 };
 
 #endif

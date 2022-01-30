@@ -29,6 +29,8 @@ public:
     point_3d center(double time) const;
 
     virtual bool hit(const ray &r, double t_min, double t_max, hit_record &record) const;
+
+    virtual bool bounding_box(double _time_0, double _time_1, aabb &output_box) const override;
 };
 
 #endif

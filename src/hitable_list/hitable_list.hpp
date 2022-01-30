@@ -9,6 +9,8 @@ Description : Class declaration for the hitable_list class.
 
 #include "../hitable/hitable.hpp"
 
+#include "../aabb/aabb.hpp"
+
 #include<vector>
 
 #include<memory>
@@ -28,6 +30,8 @@ public:
     void clear_object_list(); // This will clear the vector list.
 
     virtual bool hit(const ray &r, double t_min, double t_max, hit_record &record) const override;
+
+    virtual bool bounding_box(double time_0, double time_1, aabb &output_box) const override;
 };
 
 #endif

@@ -67,7 +67,7 @@ void paint()
 
     initialize_p_3_file(out_file, width, height);
 
-    camera cam {point_3d {0, 0, 0}, vector_3d {-2, 1, -1}, vector_3d {4, 0, 0}, vector_3d {0, -2, 0}, 0.0, 1.0};
+    camera cam {point_3d {0, 0, 0}, vector_3d {-2, 1, -1}, vector_3d {4, 0, 0}, vector_3d {0, -2, 0}, 0.0, 2.0};
 
     for(int i {0}; i < height; i++)
     {
