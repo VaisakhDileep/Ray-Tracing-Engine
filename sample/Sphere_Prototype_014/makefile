@@ -10,7 +10,9 @@ main: main.cpp \
 	../../src/sphere/sphere.cpp \
 	../../src/moving_sphere/moving_sphere.cpp \
 	../../src/hitable_list/hitable_list.cpp \
-	../../src/vector_3d/vector_3d.cpp
+	../../src/vector_3d/vector_3d.cpp \
+	../../src/aabb/aabb.cpp \
+	../../src/bvh/bvh.cpp
 
 	g++ -Wall -std=c++17 \
 	main.cpp \
@@ -26,6 +28,8 @@ main: main.cpp \
 	../../src/moving_sphere/moving_sphere.cpp \
 	../../src/hitable_list/hitable_list.cpp \
 	../../src/vector_3d/vector_3d.cpp \
+	../../src/aabb/aabb.cpp \
+	../../src/bvh/bvh.cpp \
 	-o main.exe
 
 clear:

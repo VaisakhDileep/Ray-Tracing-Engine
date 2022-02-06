@@ -17,12 +17,17 @@ void initialize_p_3_file(ofstream &out_file, int width, int height)
 
 double random_double_range_0_1()
 {
-    return static_cast<double>(rand()) / (RAND_MAX + 1.0); // Range (0, 1], not including 1.
+    return static_cast<double>(rand()) / (RAND_MAX + 1.0); // Range [0, 1), not including '1'.
 }
 
 double random_double(double min, double max)
 {
-    return min + (max - min) * random_double_range_0_1(); // Range (min, max], not including max.
+    return min + (max - min) * random_double_range_0_1(); // Range [min, max), not including "max".
+}
+
+int random_int(int min, int max)
+{
+    return static_cast<int>(random_double(min, max + 1)); // Range [min, max], including "max".
 }
 
 vector_3d random_3_d_vector_range_0_1()

@@ -27,6 +27,8 @@ double random_double_range_0_1();
 
 double random_double(double min, double max);
 
+int random_int(int min, int max);
+
 vector_3d random_3_d_vector_range_0_1();
 
 vector_3d random_3_d_vector(double min, double max);
