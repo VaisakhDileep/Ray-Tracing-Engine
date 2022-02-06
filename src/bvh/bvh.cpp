@@ -73,7 +73,7 @@ bvh_node::bvh_node(const vector<shared_ptr<hitable>> &objects, size_t start, siz
     }
     else if(object_count == 2)
     {
-        if(compare_function(objects_mutable[start], objects_mutable[end]) == true)
+        if(compare_function(objects_mutable[start], objects_mutable[end - 1]) == true)
         {
             left_branch = objects_mutable[start];
 
@@ -88,7 +88,7 @@ bvh_node::bvh_node(const vector<shared_ptr<hitable>> &objects, size_t start, siz
     }
     else
     {
-        sort(objects_mutable.begin() + start, objects_mutable.end() + end, compare_function);
+        sort(objects_mutable.begin() + start, objects_mutable.begin() + end, compare_function);
 
         int mid {(start + end) / 2};
 
@@ -127,11 +127,15 @@ bool bvh_node::hit(const ray &r, double t_min, double t_max, hit_record &record)
     {
         right_branch_hit = right_branch->hit(r, t_min, record.t, record);
     }
+    else
+    {
+        right_branch_hit = right_branch->hit(r, t_min, t_max, record);
+    }
 
     return (left_branch_hit or right_branch_hit);
 }
 
-bool bvh_node::bounding_box(double time_0, double time_1, aabb &output_box) const // returns("output_box") the "bounding_box" of the node.
+bool bvh_node::bounding_box(double time_0, double time_1, aabb &output_box) const // returns(through "output_box") the "bounding_box" of the node.
 {
     output_box = box;
 
