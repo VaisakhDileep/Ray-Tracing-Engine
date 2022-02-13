@@ -18,7 +18,7 @@ bool box_compare_y(const shared_ptr<hitable> object_1, const shared_ptr<hitable>
 bool box_compare_z(const shared_ptr<hitable> object_1, const shared_ptr<hitable> object_2);
 // Note: We can't make the following functions as member methods since we need these functions to be passed to the STL algorithms.
 
-class bvh_node : public hitable
+class bvh_node: public hitable
 {
 public:
     shared_ptr<hitable> left_branch;

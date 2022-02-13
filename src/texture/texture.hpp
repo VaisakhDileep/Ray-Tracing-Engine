@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 7, February, 2022
-Description : Class definition for the texture class.
+Description : Class declaration for the texture class.
 */
 
 #ifndef _TEXTURE_HPP_
