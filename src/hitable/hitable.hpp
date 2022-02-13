@@ -29,6 +29,10 @@ struct hit_record
 
     shared_ptr<material> material_ptr;
 
+    double latitude; // varies from 0 to pi.
+
+    double longitude; // varies from 0 to 2*pi.
+
     bool outer_face;
 
     void set_face_normal(const ray &r, const vector_3d &outward_normal);

@@ -16,7 +16,7 @@ solid_colour::solid_colour(colour_3d colour_value) // Overloaded constructor
 {
 }
 
-colour_3d solid_colour::colour_output(double u, double v, const point_3d &p) const
+colour_3d solid_colour::colour_output(double latitude, double longitude, const point_3d &p) const
 {
     return colour_value;
 }

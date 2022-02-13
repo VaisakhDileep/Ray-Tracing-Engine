@@ -12,7 +12,7 @@ Description : Class declaration for the texture class.
 class texture
 {
 public:
-    virtual colour_3d colour_output(double u, double , const point_3d &p) const = 0;
+    virtual colour_3d colour_output(double latitude, double longitude, const point_3d &p) const = 0;
 };
 
 #endif

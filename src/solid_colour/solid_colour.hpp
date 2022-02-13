@@ -19,7 +19,7 @@ public:
 
     solid_colour(colour_3d colour_value); // Overloaded constructor
 
-    virtual colour_3d colour_output(double u, double v, const point_3d &p) const override;
+    virtual colour_3d colour_output(double latitude, double longitude, const point_3d &p) const override;
 };
 
 #endif
