@@ -6,6 +6,8 @@ Description : Class definition for the sphere class.
 
 #include "sphere.hpp"
 
+#include "../ray_tracing_utility/ray_tracing_utility.hpp"
+
 #include<math.h>
 
 using namespace std;
@@ -56,6 +58,8 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
                 outer_normal *= -1;
             }
 
+            get_sphere_lat_long(outer_normal, record.latitude, record.longitude);
+
             record.set_face_normal(r, outer_normal);
 
             return true;
@@ -78,6 +82,8 @@ bool sphere::hit(const ray &r, double t_min, double t_max, hit_record &record) c
                 outer_normal *= -1;
             }
 
+            get_sphere_lat_long(outer_normal, record.latitude, record.longitude);
+
             record.set_face_normal(r, outer_normal);
 
             return true;
@@ -92,4 +98,11 @@ bool sphere::bounding_box(double time_0, double time_1, aabb &output_box) const
     output_box = aabb {center - vector_3d {radius, radius, radius}, center + vector_3d {radius, radius, radius}};
 
     return true;
+}
+
+void sphere::get_sphere_lat_long(const point_3d &p, double &latitude, double &longitude)
+{
+    latitude = (acos(-p.y())) / pi;
+
+    longitude = (atan2(-p.z(), p.x()) + pi) / (2 * pi);
 }

@@ -10,15 +10,17 @@ Description : Class definition for the lambertian class.
 
 #include "../ray_tracing_utility/ray_tracing_utility.hpp"
 
+#include "../solid_colour/solid_colour.hpp"
+
 using namespace std;
 
 lambertian::lambertian() // No-args constructor
-    : albedo {0, 0, 0}
+    : albedo {make_shared<solid_colour>(colour_3d {0, 0, 0})}
 {
 }
 
-lambertian::lambertian(colour_3d albedo) // Overloaded constructor
-    : albedo {albedo}
+lambertian::lambertian(colour_3d colour) // Overloaded constructor
+    : albedo {make_shared<solid_colour>(colour)}
 {
 }
 
@@ -28,7 +30,7 @@ bool lambertian::scatter(const ray &incident_ray, const hit_record &record, colo
 
     scattered_ray = ray {record.p, scatter_direction, incident_ray.time()};
 
-    attenuation = albedo;
+    attenuation = albedo->colour_output(record.latitude, record.longitude, record.p);
 
     return true; // It will always scatter.
 }

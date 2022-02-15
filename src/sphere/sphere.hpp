@@ -27,6 +27,8 @@ public:
     virtual bool hit(const ray &r, double t_min, double t_max, hit_record &record) const;
 
     virtual bool bounding_box(double time_0, double time_1, aabb &output_box) const override;
+
+    static void get_sphere_lat_long(const point_3d &p, double &latitude, double &longitude);
 };
 
 #endif

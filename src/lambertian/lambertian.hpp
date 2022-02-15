@@ -9,15 +9,17 @@ Description : Class declaration for the lambertian class.
 
 #include "../material/material.hpp"
 
+#include "../texture/texture.hpp"
+
 using namespace std;
 
 class lambertian: public material
 {
 public:
-    colour_3d albedo;
+    shared_ptr<texture> albedo;
 
     lambertian(); // No-args constructor
-    lambertian(colour_3d albedo); // Overloaded constructor
+    lambertian(colour_3d colour); // Overloaded constructor
 
     virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const override;
 };
