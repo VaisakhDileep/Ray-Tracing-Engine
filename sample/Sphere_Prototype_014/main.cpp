@@ -59,7 +59,7 @@ void paint()
 
     vector_3d ms_1_center_0 {point_3d {0, -0.25, -1}}, ms_1_center_1 {ms_1_center_0 + point_3d {0, 0.35, 0}};
 
-    world.add_object(make_shared<moving_sphere>(ms_1_center_0, ms_1_center_1, 0.0, 1.0, 0.25, make_shared<lambertian>(colour_3d {0, 0, 0}.convert_0_255_to_0_1())));
+    world.add_object(make_shared<moving_sphere>(ms_1_center_0, ms_1_center_1, 0.0, 1.0, 0.25, make_shared<lambertian>(colour_3d {175, 175, 175}.convert_0_255_to_0_1())));
 
     ofstream out_file {"sphere.ppm"};
 
