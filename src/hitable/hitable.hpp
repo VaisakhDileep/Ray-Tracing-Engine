@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
 Date        : 3, September, 2021
-Description : Class definition for the hitable class.
+Description : Class declaration for the hitable class.
 */
 
 #ifndef _HITABLE_HPP_
