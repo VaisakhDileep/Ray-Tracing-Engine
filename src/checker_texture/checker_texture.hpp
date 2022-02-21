@@ -20,9 +20,11 @@ public:
 
     shared_ptr<texture> even;
 
+    double length; // length of each side of the checker box.
+
     checker_texture(); // No-args constructor
-    checker_texture(shared_ptr<texture> odd, shared_ptr<texture> even); // Overloaded constructor
-    checker_texture(colour_3d odd_colour, colour_3d even_colour); // Overloaded constructor
+    checker_texture(shared_ptr<texture> odd, shared_ptr<texture> even, double length = 0); // Overloaded constructor
+    checker_texture(colour_3d odd_colour, colour_3d even_colour, double length = 0); // Overloaded constructor
 
     virtual colour_3d colour_output(double latitude, double longitude, const point_3d &p) const override;
 };

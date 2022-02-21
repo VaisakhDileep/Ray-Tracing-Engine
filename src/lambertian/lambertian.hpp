@@ -20,6 +20,7 @@ public:
 
     lambertian(); // No-args constructor
     lambertian(colour_3d colour); // Overloaded constructor
+    lambertian(shared_ptr<texture> custom_texture); // Overloaded constructor
 
     virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const override;
 };

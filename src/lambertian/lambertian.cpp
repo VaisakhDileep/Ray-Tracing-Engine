@@ -24,6 +24,11 @@ lambertian::lambertian(colour_3d colour) // Overloaded constructor
 {
 }
 
+lambertian::lambertian(shared_ptr<texture> custom_texture) // Overloaded constructor
+    : albedo {custom_texture}
+{
+}
+
 bool lambertian::scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const
 {
     vector_3d scatter_direction {record.normal + random_3_d_vector_in_unit_sphere_surface()};
