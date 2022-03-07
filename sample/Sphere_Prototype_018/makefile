@@ -14,7 +14,9 @@ main: main.cpp \
 	../../src/vector_3d/vector_3d.cpp \
 	../../src/aabb/aabb.cpp \
 	../../src/bvh/bvh.cpp \
-	../../src/solid_colour/solid_colour.cpp
+	../../src/solid_colour/solid_colour.cpp \
+	../../src/diffuse_light/diffuse_light.cpp \
+	../../src/checker_texture/checker_texture.cpp
 
 	g++ -Wall -std=c++17 -g \
 	main.cpp \
@@ -34,6 +36,8 @@ main: main.cpp \
 	../../src/aabb/aabb.cpp \
 	../../src/bvh/bvh.cpp \
 	../../src/solid_colour/solid_colour.cpp \
+	../../src/diffuse_light/diffuse_light.cpp \
+	../../src/checker_texture/checker_texture.cpp \
 	-o main.exe
 
 clear:

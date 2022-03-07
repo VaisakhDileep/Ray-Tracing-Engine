@@ -22,7 +22,7 @@ public:
 
     virtual colour_3d emitted_colour(double latitude, double longitude, const point_3d &p) const;
 
-    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const = 0;
+    virtual bool scatter(const ray &incident_ray, const hit_record &record, colour_3d &attenuation, ray &scattered_ray) const;
 };
 
 #endif
