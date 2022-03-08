@@ -4,7 +4,7 @@ Date        : 7, March, 2022
 Description : Class defintion for the rectangle_x_y class.
 */
 
-#include "../rectangle_x_y/rectangle_x_y.hpp"
+#include "rectangle_x_y.hpp"
 
 rectangle_x_y::rectangle_x_y() // No-args constructor
     : x_0 {0}, x_1 {0}, y_0 {0}, y_1 {0}, z {0}, material_ptr {nullptr}
