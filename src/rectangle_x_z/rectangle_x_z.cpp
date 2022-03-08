@@ -53,7 +53,7 @@ bool rectangle_x_z::hit(const ray &r, double t_min, double t_max, hit_record &re
 
 bool rectangle_x_z::bounding_box(double time_0, double time_1, aabb &output_box) const
 {
-    output_box = aabb {point_3d {x_0, y - 0.0001, z_0}, point_3d {x_1, y + 0.0001, z_1}};
+    output_box = aabb {point_3d {x_0, y - 0.0001, z_0}, point_3d {x_1, y + 0.0001, z_1}}; // We pad the y-direction by a small value.
 
     return true;
 }
