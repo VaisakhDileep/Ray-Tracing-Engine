@@ -25,7 +25,7 @@ bool rectangle_x_y::hit(const ray &r, double t_min, double t_max, hit_record &re
         return false;
     }
 
-    double x {r.origin().x() + (t * r.direction().z())};
+    double x {r.origin().x() + (t * r.direction().x())};
 
     double y {r.origin().y() + (t * r.direction().y())};
 
@@ -47,6 +47,13 @@ bool rectangle_x_y::hit(const ray &r, double t_min, double t_max, hit_record &re
     vector_3d outward_normal {vector_3d {0, 0, 1}};
 
     record.set_face_normal(r, outward_normal);
+
+    return true;
+}
+
+bool rectangle_x_y::bounding_box(double time_0, double time_1, aabb &output_box) const
+{
+    output_box = aabb {point_3d {x_0, y_0, z - 0.0001}, point_3d {x_1, y_1, z + 0.0001}}; // We pad the z-direction by a small value.
 
     return true;
 }

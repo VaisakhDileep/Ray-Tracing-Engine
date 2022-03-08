@@ -1,0 +1,46 @@
+main: main.cpp \
+	../../src/ray/ray.cpp \
+	../../src/hitable/hitable.cpp \
+	../../src/colour/colour.cpp \
+	../../src/lambertian/lambertian.cpp \
+	../../src/material/material.cpp \
+	../../src/metal/metal.cpp \
+	../../src/dielectric/dielectric.cpp \
+	../../src/ray_tracing_utility/ray_tracing_utility.cpp \
+	../../src/camera/camera.cpp \
+	../../src/sphere/sphere.cpp \
+	../../src/moving_sphere/moving_sphere.cpp \
+	../../src/hitable_list/hitable_list.cpp \
+	../../src/vector_3d/vector_3d.cpp \
+	../../src/aabb/aabb.cpp \
+	../../src/bvh/bvh.cpp \
+	../../src/solid_colour/solid_colour.cpp \
+	../../src/diffuse_light/diffuse_light.cpp \
+	../../src/checker_texture/checker_texture.cpp \
+	../../src/rectangle_x_y/rectangle_x_y.cpp
+
+	g++ -Wall -std=c++17 -g \
+	main.cpp \
+	../../src/ray/ray.cpp \
+	../../src/hitable/hitable.cpp \
+	../../src/colour/colour.cpp \
+	../../src/lambertian/lambertian.cpp \
+	../../src/material/material.cpp \
+	../../src/metal/metal.cpp \
+	../../src/dielectric/dielectric.cpp \
+	../../src/ray_tracing_utility/ray_tracing_utility.cpp \
+	../../src/camera/camera.cpp \
+	../../src/sphere/sphere.cpp \
+	../../src/moving_sphere/moving_sphere.cpp \
+	../../src/hitable_list/hitable_list.cpp \
+	../../src/vector_3d/vector_3d.cpp \
+	../../src/aabb/aabb.cpp \
+	../../src/bvh/bvh.cpp \
+	../../src/solid_colour/solid_colour.cpp \
+	../../src/diffuse_light/diffuse_light.cpp \
+	../../src/checker_texture/checker_texture.cpp \
+	../../src/rectangle_x_y/rectangle_x_y.cpp \
+	-o main.exe
+
+clear:
+	del main.exe

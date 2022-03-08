@@ -13,6 +13,7 @@ Description : Class declaration for the rectangle_x_y class.
 
 class rectangle_x_y: public hitable
 {
+public:
     double x_0, x_1;
 
     double y_0, y_1;
