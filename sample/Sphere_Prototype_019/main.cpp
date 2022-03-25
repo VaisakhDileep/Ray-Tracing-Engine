@@ -60,11 +60,9 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 
 void paint()
 {
-    shared_ptr<checker_texture> checker_pattern {make_shared<checker_texture>(colour_3d {0, 0, 0}.convert_0_255_to_0_1(), colour_3d {255, 255, 0}.convert_0_255_to_0_1(), 0.1)};
-
     shared_ptr<diffuse_light> star {make_shared<diffuse_light>(colour_3d {5, 5, 5})};
 
-    hitable_list world {vector<shared_ptr<hitable>> {make_shared<rectangle_x_y>(-0.5, 0.5, -0.25, 0.75, -1, star), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(checker_pattern))}};
+    hitable_list world {vector<shared_ptr<hitable>> {make_shared<rectangle_x_y>(-0.5, 0.5, -0.5, 0.5, -1, star)}};
 
     ofstream out_file {"sphere.ppm"};
 
@@ -72,7 +70,7 @@ void paint()
 
     initialize_p_3_file(out_file, width, height);
 
-    camera cam {point_3d {0, 0, 0}, vector_3d {-2, 1, -1}, vector_3d {4, 0, 0}, vector_3d {0, -2, 0}};
+    camera cam {point_3d {0, 0, 0}, vector_3d {0, 0, -1}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
 
     cout<<"progress bar: ";
     for(int i {0}; i < height; i++)
@@ -92,7 +90,7 @@ void paint()
 
                 ray r {cam.get_ray(u, v)};
 
-                colour+=colour_output(r, world, max_depth);
+                colour += colour_output(r, world, max_depth);
             }
             write_colour_0_1_format(out_file, colour, samples_per_pixel, 2.2); // gama correction = 2.2
         }

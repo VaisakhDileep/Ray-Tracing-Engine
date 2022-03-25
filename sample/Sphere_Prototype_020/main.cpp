@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
-Date        : 8, November, 2021
-Description : Demonstrates the repositionable camera property in the camera class.
+Date        : 8, March, 2022
+Description : Demonstrates rectangle_x_z.
 */
 
 #include "../../src/sphere/sphere.hpp"
@@ -20,6 +20,16 @@ Description : Demonstrates the repositionable camera property in the camera clas
 
 #include "../../src/dielectric/dielectric.hpp"
 
+#include "../../src/checker_texture/checker_texture.hpp"
+
+#include "../../src/diffuse_light/diffuse_light.hpp"
+
+#include "../../src/rectangle_x_z/rectangle_x_z.hpp"
+
+#include "../../src/rectangle_x_y/rectangle_x_y.hpp"
+
+#include "../../src/rectangle_y_z/rectangle_y_z.hpp"
+
 using namespace std;
 
 colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
@@ -37,41 +47,43 @@ colour_3d colour_output(const ray &r, const hitable_list &world, int depth)
 
     if(world.hit(r, 0.0001, infinity, record))
     {
+        colour_3d emitted_colour {record.material_ptr->emitted_colour(record.latitude, record.longitude, record.p)};
+
         if(record.material_ptr->scatter(r, record, attenuation, scattered_ray))
         {
-            return attenuation * colour_output(scattered_ray, world, depth - 1);
+            return emitted_colour + (attenuation * colour_output(scattered_ray, world, depth - 1));
         }
-        else
+        else // If it directly hits a light source.
         {
-            return colour_3d {0, 0, 0};
+            return emitted_colour;
         }
     }
 
-    return colour_3d {135, 223, 235}.convert_0_255_to_0_1(); // sky blue colour.
+    return colour_3d {0, 0, 0}; // Notice here we are not return "sky blue colour"(no background light source).
 }
 
 void paint()
 {
-    hitable_list world {vector<shared_ptr<hitable>> {make_shared<sphere>(point_3d {0, 0, -1}, 0.5, make_shared<lambertian>(colour_3d {255, 0, 0}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, 0, -2}, 0.5, make_shared<lambertian>(colour_3d {0, 255, 0}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, 0, -3}, 0.5, make_shared<lambertian>(colour_3d {0, 0, 255}.convert_0_255_to_0_1())), make_shared<sphere>(point_3d {0, -100000.5, -1}, 100000, make_shared<lambertian>(colour_3d {12, 157, 240}.convert_0_255_to_0_1()))}};
+    shared_ptr<diffuse_light> star {make_shared<diffuse_light>(colour_3d {5, 5, 5})};
+
+    hitable_list world {vector<shared_ptr<hitable>> {make_shared<rectangle_x_z>(-0.5, 0.5, -0.5, 0.5, 1, star)}};
 
     ofstream out_file {"sphere.ppm"};
 
-    int width {200}, height {100}, samples_per_pixel {100}, max_depth {50};
+    int width {400}, height {200}, samples_per_pixel {300}, max_depth {50};
 
     initialize_p_3_file(out_file, width, height);
 
-    // camera cam {point_3d {0, 0, 0}, point_3d {0, 0, -1}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
+    camera cam {point_3d {0, 0, 0}, point_3d {0, 1, 0}, vector_3d {0, 0, 1}, 90, static_cast<double>(width) / static_cast<double>(height)};
 
-    // camera cam {point_3d {0, 0, -4}, point_3d {0, 0, -3}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
-
-    // camera cam {point_3d {1, 0, -2}, point_3d {0, 0, -2}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
-
-    //camera cam {point_3d {-1, 0, -2}, point_3d {0, 0, -2}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
-
-    camera cam {point_3d {0, 3, -2}, point_3d {0, 0, -2}, vector_3d {0, 0, -1}, 90, static_cast<double>(width) / static_cast<double>(height)};
-
+    cout<<"progress bar: ";
     for(int i {0}; i < height; i++)
     {
+        if((i % 2) == 0)
+        {
+            cout<<"#";
+        }
+
         for(int j {0}; j < width; j++)
         {
             colour_3d colour {};
@@ -88,6 +100,7 @@ void paint()
         }
         out_file<<"\n";
     }
+    cout<<"\n";
 }
 
 int main()
