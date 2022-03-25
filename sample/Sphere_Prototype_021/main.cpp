@@ -1,7 +1,7 @@
 /*
 Created by  : Vaisakh Dileep
-Date        : 8, March, 2022
-Description : Demonstrates rectangle_x_z.
+Date        : 25, March, 2022
+Description : Demonstrates rectangle_y_z.
 */
 
 #include "../../src/sphere/sphere.hpp"
@@ -24,7 +24,7 @@ Description : Demonstrates rectangle_x_z.
 
 #include "../../src/diffuse_light/diffuse_light.hpp"
 
-#include "../../src/rectangle_x_z/rectangle_x_z.hpp"
+#include "../../src/rectangle_y_z/rectangle_y_z.hpp"
 
 using namespace std;
 
@@ -62,7 +62,7 @@ void paint()
 {
     shared_ptr<diffuse_light> star {make_shared<diffuse_light>(colour_3d {5, 5, 5})};
 
-    hitable_list world {vector<shared_ptr<hitable>> {make_shared<rectangle_x_z>(-0.5, 0.5, -0.5, 0.5, 1, star)}};
+    hitable_list world {vector<shared_ptr<hitable>> {make_shared<rectangle_y_z>(-0.5, 0.5, -0.5, 0.5, 1, star)}};
 
     ofstream out_file {"sphere.ppm"};
 
@@ -70,7 +70,7 @@ void paint()
 
     initialize_p_3_file(out_file, width, height);
 
-    camera cam {point_3d {0, 0, 0}, point_3d {0, 1, 0}, vector_3d {0, 0, 1}, 90, static_cast<double>(width) / static_cast<double>(height)};
+    camera cam {point_3d {0, 0, 0}, point_3d {1, 0, 0}, vector_3d {0, 1, 0}, 90, static_cast<double>(width) / static_cast<double>(height)};
 
     cout<<"progress bar: ";
     for(int i {0}; i < height; i++)
