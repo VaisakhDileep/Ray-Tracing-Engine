@@ -15,7 +15,7 @@ aabb::aabb() // No-args constructor
 {
 }
 
-aabb::aabb(const point_3d minimum_limit, const point_3d maximum_limit) // Overloaded constructor
+aabb::aabb(point_3d minimum_limit, point_3d maximum_limit) // Overloaded constructor
     : minimum_limit {minimum_limit}, maximum_limit {maximum_limit}
 {
 }

@@ -17,7 +17,7 @@ public:
     point_3d maximum_limit;
 
     aabb(); // No-args constructor
-    aabb(const point_3d minimum_limit, const point_3d maximum_limit); // Overloaded constructor
+    aabb(point_3d minimum_limit, point_3d maximum_limit); // Overloaded constructor
 
     point_3d minimum() const;
     point_3d maximum() const;
