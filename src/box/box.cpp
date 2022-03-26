@@ -13,7 +13,7 @@ Description : Class definition for the box class.
 #include "../../src/rectangle_y_z/rectangle_y_z.hpp"
 
 box::box() // No-args constructor
-    : minimum_limit {0, 0, 0}, maximum_limit {0, 0, 0}, box_sides {vector<shared_ptr<hitable>> {}};
+    : minimum_limit {0, 0, 0}, maximum_limit {0, 0, 0}, box_sides {vector<shared_ptr<hitable>> {}}
 {
 }
 
